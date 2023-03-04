@@ -1,6 +1,7 @@
 import "./globals.css";
 import Nav from "./auth/Nav";
 import { Roboto, Source_Sans_Pro } from "@next/font/google";
+import { SessionProvider } from "next-auth/react";
 
 // Rename this file to layout.jsx to use it as typescript is not currently recognizing server components in the layout file
 
@@ -24,8 +25,9 @@ export default function RootLayout({ children }) {
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
 			<head />
+
 			<body
-				className={` mx-4 md:mx-12  2xl:48 ${
+				className={`  md:mx-12  2xl:48 ${
 					(roboto.variable, sourceSansPro.variable)
 				} bg-[#070707] text-white`}
 			>
