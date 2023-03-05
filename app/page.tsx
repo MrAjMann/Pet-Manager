@@ -7,9 +7,9 @@ export default function Home() {
 	return (
 		<main>
 			<section className='mt-2 md:mt-0 flex flex-col-reverse lg:flex-row justify-center items-center md:my-12 '>
-				<div className='md:mx-12 flex flex-col md:p-2 justify-center sm:items-start'>
+				<div className=' md:mx-12 flex flex-col md:p-2 justify-center sm:items-start'>
 					<h1
-						className={`px-4 md:px-0 text-2xl lg:text-4xl  w-full leading-normal font-white font-source-sans-pro font-semibold md:my-4 `}
+						className={`px-4 md:px-0 text-2xl lg:text-4xl text-center w-full leading-normal font-white font-source-sans-pro font-semibold md:my-4 `}
 					>
 						Caring for animals is hard enough, <br /> PetLodgePro makes it
 						easier
@@ -18,14 +18,14 @@ export default function Home() {
 						Securly handle your furry clients information, bookings and payments
 						all in one convient place.
 					</p>
-					<div className='flex px-4 md:px-0 flex-col justify-center md:justify-left gap-6 my-4 '>
+					<div className='flex px-4 md:px-0 flex-col md:flex-row justify-center md:justify-left gap-6 my-4 '>
 						<Register />
-						<button className='border-2 border-blue-500 ring-blue-500 hover:border-blue-900 hover:font-bold text-white font-semibold transition-all ease-in duration-300 w-full py-3 md:w-0 px-6 md:py-2 rounded-md disabled:opacity-25'>
+						<button className='border-2 border-blue-500 ring-blue-500 hover:border-blue-900 hover:font-bold text-white font-semibold transition-all ease-in duration-300 w-full py-3 md:w-auto px-6 md:py-2 rounded-md disabled:opacity-25'>
 							Book a Demo
 						</button>
 					</div>
 				</div>
-				<div className='flex w-full px-2 md:px-0 justify-center items-center md:rounded-2xl'>
+				<div className='mt-12 px-8 flex w-full md:px-0 justify-center items-center md:rounded-2xl'>
 					<CldImage
 						src={"AMWebsiteSolutions/PetLodgePro/Puppy_Rolling.jpg"}
 						alt={"Puppy Rolling"}

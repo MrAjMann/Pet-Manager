@@ -1,7 +1,7 @@
 import "./globals.css";
 import Nav from "./auth/Nav";
 import { Roboto, Source_Sans_Pro } from "@next/font/google";
-import { SessionProvider } from "next-auth/react";
+import Providers from "./providers";
 
 // Rename this file to layout.jsx to use it as typescript is not currently recognizing server components in the layout file
 
@@ -31,8 +31,10 @@ export default function RootLayout({ children }) {
 					(roboto.variable, sourceSansPro.variable)
 				} bg-[#070707] text-white`}
 			>
-				<Nav />
-				{children}
+				<Providers>
+					<Nav />
+					{children}
+				</Providers>
 			</body>
 		</html>
 	);
