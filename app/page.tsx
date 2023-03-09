@@ -9,7 +9,7 @@ export default function Home() {
 			<section className='mt-2 md:mt-0 flex flex-col-reverse lg:flex-row justify-center items-center md:my-12 '>
 				<div className=' md:mx-12 flex flex-col md:p-2 justify-center sm:items-start'>
 					<h1
-						className={`px-4 md:px-0 text-2xl lg:text-4xl text-center w-full leading-normal font-white font-source-sans-pro font-semibold md:my-4 `}
+						className={`px-4 md:px-0 text-2xl lg:text-4xl text-center  leading-normal font-white font-source-sans-pro font-semibold md:my-4 `}
 					>
 						Caring for animals is hard enough, <br /> PetLodgePro makes it
 						easier

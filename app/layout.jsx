@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
 			<head />
 
 			<body
-				className={`  md:mx-12  2xl:48 ${
+				className={`md:mx-12  2xl:48 ${
 					(roboto.variable, sourceSansPro.variable)
 				} bg-[#070707] text-white`}
 			>

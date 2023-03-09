@@ -4,17 +4,12 @@ import Login from "./Login";
 import Register from "./Register";
 import Logout from "./Logout";
 import { useSession } from "next-auth/react";
-import getServerSession from "next-auth";
-import { authOptions } from "../../pages/api/auth/[...nextauth]";
+
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-type userInfoTypes = {
-	name: string;
-	email: string;
-	image: string;
-};
+
 import { useState, useEffect } from "react";
 
-export default function Nav({ userInfo }: { userInfo: userInfoTypes }) {
+export default function Nav() {
 	// const session = await getServerSession(authOptions);
 	const { data: session } = useSession();
 	// console.log(session);
