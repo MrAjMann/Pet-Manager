@@ -1,6 +1,7 @@
 "use client";
 
 import { CldImage } from "next-cloudinary";
+import Image from "next/image";
 import Register from "./auth/Register";
 
 export default function Home() {
@@ -26,16 +27,16 @@ export default function Home() {
 					</div>
 				</div>
 				<div className='mt-12 px-8 flex w-full md:px-0 justify-center items-center md:rounded-2xl'>
-					<CldImage
-						src={"AMWebsiteSolutions/PetLodgePro/Puppy_Rolling.jpg"}
+					<Image
+						src={
+							"https://res.cloudinary.com/mycodingjourne3/image/upload/v1677317879/AMWebsiteSolutions/PetLodgePro/Puppy_Rolling.jpg"
+						}
 						alt={"Puppy Rolling"}
 						sizes='100vw'
 						width='700'
 						height='450'
-						crop='fill'
-						gravity='auto'
 						className='md:rounded-2xl py-2 my-6 lg:my-24 lg:mx-8 '
-					></CldImage>
+					></Image>
 				</div>
 			</section>
 		</main>
