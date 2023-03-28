@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
-import Login from "./Login";
+import SignInButton from "../../components/authComponent/buttons";
 import Register from "./Register";
-import Logout from "./Logout";
+import Logout from "./logout/page";
 import { useSession } from "next-auth/react";
 
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 export default function Nav() {
 	// const session = await getServerSession(authOptions);
 	const { data: session } = useSession();
-	// console.log(session);
+	console.log("session", session);
 
 	const [menuOpen, setMenuOpen] = useState(false);
 
@@ -21,7 +21,7 @@ export default function Nav() {
 	};
 
 	return (
-		<nav className='bg-black fixed w-full h-24 '>
+		<nav className='bg-[#070707] fixed w-full h-24 '>
 			<div className='flex justify-between items-center h-full px-4 2xl-px-16'>
 				<div className='cursor-pointer ml-[1rem] '>
 					<Link href={"/"}>
@@ -47,10 +47,8 @@ export default function Nav() {
 							<li>Pricing</li>
 						</Link>
 						<div className='flex justify-center mr-10 '>
-							{!session?.user && <Login />}
-							{session && session?.user && (
-								<Logout image={session.user?.image || "Image not availbale"} />
-							)}
+							{!session?.user && <SignInButton />}
+							{session && session?.user && <Logout />}
 						</div>
 					</ul>
 				</div>
@@ -67,10 +65,8 @@ export default function Nav() {
 			>
 				<div className='flex-col w-full h-full  items-center justify-between bg-black'>
 					<div className='flex flex-row-reverse justify-center '>
-						{!session?.user && <Login />}
-						{session?.user && (
-							<Logout image={session.user?.image || "Image not availbale"} />
-						)}
+						{!session?.user && <SignInButton />}
+						{session?.user && <Logout />}
 					</div>
 					<div className='flex w-full items-center justify-between bg-black mt-4'>
 						<div className='sm:hidden cursor-pointer ml-[1rem] '>

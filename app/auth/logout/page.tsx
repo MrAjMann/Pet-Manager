@@ -7,7 +7,8 @@ import Link from "next/link";
 type User = {
 	image: string;
 };
-export default function Logged({ image }: User) {
+
+export default function Logged() {
 	return (
 		<li className='w-full flex flex-row-reverse  sm:flex-row justify-between items-center list-none mx-4'>
 			<button
@@ -20,7 +21,7 @@ export default function Logged({ image }: User) {
 				<Image
 					width={64}
 					height={64}
-					src={image}
+					src={"image"}
 					className='w-12 sm:w-14 rounded-full'
 					alt={`Profile picture`}
 					priority

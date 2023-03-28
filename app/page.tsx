@@ -6,8 +6,8 @@ import Register from "./auth/Register";
 
 export default function Home() {
 	return (
-		<main className=''>
-			<section className='h-screen mt-2 md:mt-0 flex flex-col-reverse lg:flex-row justify-center items-center md:my-12 '>
+		<main>
+			<section className='mt-2 md:mt-0 flex flex-col-reverse lg:flex-row justify-center items-center md:my-12 '>
 				<div className=' md:mx-12 flex flex-col md:p-2 justify-center sm:items-start'>
 					<h1
 						className={`px-4 md:px-0 text-2xl lg:text-4xl text-center  leading-normal font-white font-source-sans-pro font-semibold md:my-4 `}

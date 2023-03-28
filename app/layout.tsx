@@ -17,15 +17,13 @@ const sourceSansPro = Source_Sans_Pro({
 	variable: "--font-sourceSansPro",
 });
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
 	return (
 		<html lang='en' className={`${(roboto.variable, sourceSansPro.variable)}`}>
-			{/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
-			<head />
-
 			<body
 				className={`md:mx-12  2xl:48 ${
 					(roboto.variable, sourceSansPro.variable)
