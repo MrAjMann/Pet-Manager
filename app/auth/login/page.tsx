@@ -5,12 +5,12 @@ import { useRef } from "react";
 
 export default function LoginPage() {
 	// Change over to react-hook-form once working
-	const userName = useRef("");
+	const email = useRef("");
 	const pass = useRef("");
 
 	const onSubmit = async () => {
 		const result = await signIn("credentials", {
-			username: userName.current,
+			email: email.current,
 			password: pass.current,
 			redirect: true,
 			callbackUrl: "/auth/admin",
@@ -28,8 +28,9 @@ export default function LoginPage() {
 					</label>
 					<input
 						type='email'
-						name='username'
-						onChange={(e) => (userName.current = e.target.value)}
+						name='email'
+						required
+						onChange={(e) => (email.current = e.target.value)}
 						id='email'
 						// {...register('name', {
 						//     required: {
@@ -59,6 +60,7 @@ export default function LoginPage() {
 						type={"password"}
 						onChange={(e) => (pass.current = e.target.value)}
 						name='password'
+						required
 						id='password'
 						// {...register('name', {
 						//     required: {
