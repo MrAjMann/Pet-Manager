@@ -34,9 +34,10 @@ export default function Home() {
 						alt={"Puppy Rolling"}
 						sizes='100vw'
 						width='700'
+						priority={true}
 						height='450'
 						className='md:rounded-2xl py-2 my-6 lg:my-24 lg:mx-8 '
-					></Image>
+					/>
 				</div>
 			</section>
 		</main>

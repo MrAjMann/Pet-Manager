@@ -12,7 +12,9 @@ import { useState, useEffect } from "react";
 export default function Nav() {
 	// const session = await getServerSession(authOptions);
 	const { data: session } = useSession();
-	console.log("session", session);
+	useEffect(() => {
+		console.log("session in nav", session?.user?.email);
+	}, [session]);
 
 	const [menuOpen, setMenuOpen] = useState(false);
 
@@ -48,6 +50,7 @@ export default function Nav() {
 						</Link>
 						<div className='flex justify-center mr-10 '>
 							{!session?.user && <SignInButton />}
+							<h1>{session?.user?.name}</h1>
 							{session && session?.user && <Logout />}
 						</div>
 					</ul>

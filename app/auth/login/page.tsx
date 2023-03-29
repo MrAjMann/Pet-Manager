@@ -13,23 +13,24 @@ export default function LoginPage() {
 			username: userName.current,
 			password: pass.current,
 			redirect: true,
-			callbackUrl: "/",
+			callbackUrl: "/auth/admin",
 		});
+		console.log("result", result);
 	};
 
 	return (
 		// Custom Sign in page
 		<div className='flex flex-col items-center justify-center h-screen'>
-			<div className='flex flex-col items-center justify-center  w-1/2 h-1/2 rounded-lg gap-4'>
+			<div className='flex flex-col items-center justify-center w-1/2 h-1/2 rounded-lg gap-4'>
 				<div className=' flex flex-col sm:m-1'>
-					<label htmlFor='name' className='text-lg  tracking-wide py-2'>
+					<label htmlFor='email' className='text-lg  tracking-wide py-2'>
 						Email Address
 					</label>
 					<input
 						type='email'
 						name='username'
 						onChange={(e) => (userName.current = e.target.value)}
-						id='name'
+						id='email'
 						// {...register('name', {
 						//     required: {
 						//         value: true,
@@ -51,7 +52,7 @@ export default function LoginPage() {
 				</div>
 
 				<div className=' flex flex-col sm:m-1 '>
-					<label htmlFor='name' className='text-lg  tracking-wide py-2'>
+					<label htmlFor='password' className='text-lg  tracking-wide py-2'>
 						Password
 					</label>
 					<input

@@ -6,24 +6,19 @@ import { NextApiHandler } from "next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
 import type { NextAuthOptions } from "next-auth";
-import { PrismaClient } from "@prisma/client";
-// import { User } from "next-auth";
-// const prisma = new PrismaClient();
-
-// console.log('prisma', prisma);
 
 
-export const authOptions: NextAuthOptions = {
+export const options: NextAuthOptions = {
 	// Configure one or more authentication providers
 	debug: true,
 	providers: [
 		// ...add more providers
 		CredentialsProvider({
-			// The name to display on the sign in form (e.g. "Sign in with...")
-			name: "credentials",
+			// The name to display on the sign in form (e.g. 'Sign in with...')
 			id: "credentials",
-			// `credentials` is used to generate a form on the sign in page.
-			// You can specify which fields should be submitted, by adding keys to the `credentials` object.
+			name: "credentials",
+			// The credentials is used to generate a suitable form on the sign in page.
+			// You can specify whatever fields you are expecting to be submitted.
 			// e.g. domain, username, password, 2FA token, etc.
 			// You can pass any HTML attribute to the <input> tag through the object.
 			credentials: {
@@ -32,59 +27,72 @@ export const authOptions: NextAuthOptions = {
 					type: "text",
 					placeholder: "jsmith",
 				},
-				password: {
-					label: "Password",
-					type: "password",
-				},
+				password: { label: "Password", type: "password" },
 			},
-			 authorize: async (credentials, req) => {
-				// const { username, password } = credentials as { username: string, password: string }
+			authorize: async (credentials, req) => {
+				// Add logic here to look up the user from the credentials supplied
+				const { username, password } = credentials as { username: string, password: string };
 
 
-				const user = await fetch(`${process.env.NEXTAUTH_URL}/api/user/check-credentials`,
+
+				const user = await fetch(
+					`${process.env.NEXTAUTH_URL}/api/user/credentials`,
 					{
 						method: "POST",
 						headers: {
-							"Content-Type": "application/x-www-form-urlencoded",
+							"Content-Type": "application/json",
 							accept: "application/json",
 						},
-						body: Object.entries(credentials)
-							.map((e) => e.join("="))
-							.join("&"),
+						body: JSON.stringify(credentials),
+
 					},
 				)
 					.then((res) => res.json())
-					.catch((err) => {
-						return null;
-					});
-				// const user = await res.json();
-				// console.log('user', user);
+				// console.log(username, password);
 
-
-				// console.log('res', res)
-
-
-
-
-
-
-
-				if (user !== null) {
-					return user;
-				} else {
-					console.log('Not authorised');
-
-					return null
+				if (!user) {
+					console.log('user not found');
+					return null;
 				}
+				if (user) {
+					console.log('user found');
+					return user
+				}
+
+
 			},
 		}),
 	],
 
-
-
 	pages: {
 		signIn: "/auth/login",
 	},
+	adapter: PrismaAdapter(prisma),
+	secret: process.env.SECRET,
+	session: { strategy: "jwt", maxAge: 30 * 24 * 60 * 60, updateAge: 24 * 60 * 60 },
+
+	callbacks: {
+		async session({ session, token }) {
+			session.user = token.user;
+			// console.log("session.user", session.user);
+
+			return session;
+		},
+		async jwt({ token, user }) {
+			if (user) {
+				token.user = user;
+				// console.log("token.user", token.user);
+
+			}
+			return token;
+		},
+	}
+
+
 };
 
-export default NextAuth(authOptions);
+
+
+const authHandler: NextApiHandler = (req, res) =>
+	NextAuth(req, res, options);
+export default authHandler;
