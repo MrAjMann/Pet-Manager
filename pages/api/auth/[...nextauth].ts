@@ -31,7 +31,7 @@ export const options: NextAuthOptions = {
 			},
 			authorize: async (credentials, req) => {
 				// Add logic here to look up the user from the credentials supplied
-				const { email, password } = credentials as { email: string, password: string };
+				// const { email, password } = credentials as { email: string, password: string };
 
 
 
@@ -55,7 +55,7 @@ export const options: NextAuthOptions = {
 					return null;
 				}
 				if (user) {
-					console.log('user found');
+					console.log(`${user.email} has been found`);
 					return user
 				}
 
@@ -68,7 +68,7 @@ export const options: NextAuthOptions = {
 		signIn: "/auth/login",
 	},
 	adapter: PrismaAdapter(prisma),
-	secret: process.env.SECRET,
+	secret: process.env.AUTH_SECRET,
 	session: { strategy: "jwt", maxAge: 30 * 24 * 60 * 60, updateAge: 24 * 60 * 60 },
 
 	callbacks: {

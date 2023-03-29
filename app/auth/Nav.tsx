@@ -12,9 +12,6 @@ import { useState, useEffect } from "react";
 export default function Nav() {
 	// const session = await getServerSession(authOptions);
 	const { data: session } = useSession();
-	useEffect(() => {
-		console.log("session in nav", session?.user?.email);
-	}, [session]);
 
 	const [menuOpen, setMenuOpen] = useState(false);
 
@@ -49,8 +46,15 @@ export default function Nav() {
 							<li>Pricing</li>
 						</Link>
 						<div className='flex justify-center mr-10 '>
-							{!session?.user && <SignInButton />}
-							<h1>{session?.user?.name}</h1>
+							{!session?.user && <SignInButton /> && (
+								<Link
+									href='/auth/new-user'
+									className='mr-10 text-lg tracking-wider hover:border-b hover:border-gray-50'
+								>
+									<li>Register</li>
+								</Link>
+							)}
+							<h1>{session?.user?.firstName}</h1>
 							{session && session?.user && <Logout />}
 						</div>
 					</ul>
@@ -100,7 +104,7 @@ export default function Nav() {
 									</li>
 								</Link>
 
-								<Link href='/about'>
+								<Link href='/pricing'>
 									<li
 										onClick={() => setMenuOpen(false)}
 										className='py-8  cursor-pointer text-lg tracking-wider'

@@ -29,9 +29,7 @@ export default async function handle(
 
 async function handlePOST(res, req: NextApiRequest) {
 
-
-
-    const user = await prisma.user?.findUnique({
+    const user = await prisma.user.findUnique({
         where: {
             email: req.body.email
         },
