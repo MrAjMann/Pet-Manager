@@ -1,13 +1,13 @@
 "use client";
 import Link from "next/link";
 import SignInButton from "../../components/authComponent/buttons";
-import Register from "./Register";
+
 import Logout from "./logout/page";
 import { useSession } from "next-auth/react";
 
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Nav() {
 	// const session = await getServerSession(authOptions);
@@ -46,13 +46,18 @@ export default function Nav() {
 							<li>Pricing</li>
 						</Link>
 						<div className='flex justify-center mr-10 '>
-							{!session?.user && <SignInButton /> && (
-								<Link
-									href='/auth/new-user'
-									className='mr-10 text-lg tracking-wider hover:border-b hover:border-gray-50'
-								>
-									<li>Register</li>
-								</Link>
+							{!session?.user && (
+								<div className=' flex items-center align-middle py-6'>
+									<Link
+										href='/auth/new-user'
+										className='mr-10 text-lg tracking-wider hover:border-b hover:border-gray-50'
+									>
+										<li>Register</li>
+									</Link>
+									<div>
+										<SignInButton />
+									</div>
+								</div>
 							)}
 							<h1>{session?.user?.firstName}</h1>
 							{session && session?.user && <Logout />}
