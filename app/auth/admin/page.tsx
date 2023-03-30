@@ -1,7 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { useEffect } from "react";
+
 
 export default function CompanyDashboard() {
 	const { data: session, status } = useSession();
