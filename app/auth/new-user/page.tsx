@@ -32,7 +32,7 @@ export default function NewUserPage() {
 					firstName: data.firstName,
 					email: data.email,
 					password: data.password,
-					callbackURL: router.push("/auth/login"),
+					// callbackURL: router.push("/auth/login"),
 				}),
 			});
 			// return createdUser;

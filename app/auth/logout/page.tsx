@@ -17,16 +17,16 @@ export default function Logged() {
 			>
 				Sign Out
 			</button>
-			<Link href={"/auth/admin"}>
-				{/* <Image
+			{/* <Link href={"/admin"}>
+				<Image
 					width={64}
 					height={64}
 					src={"/image"}
 					className='w-12 sm:w-14 rounded-full'
 					alt={`Profile picture`}
 					priority
-				/> */}
-			</Link>
+				/>
+			</Link> */}
 		</li>
 	);
 }

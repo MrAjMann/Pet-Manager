@@ -53,6 +53,13 @@ model Session {
   @@index([userId])
 }
 
+enum Role {
+  ADMIN
+  COMPANYADMIN
+  COMPANYUSER
+  CLIENT
+}
+
 model User {
   id            String    @id @default(cuid())
   firstName     String?
@@ -63,6 +70,7 @@ model User {
   image         String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  role          String    @default("CLIENT")
   posts         Post[]
   accounts      Account[]
   sessions      Session[]

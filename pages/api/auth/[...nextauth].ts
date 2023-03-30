@@ -68,23 +68,19 @@ export const options: NextAuthOptions = {
 		signIn: "/auth/login",
 	},
 	adapter: PrismaAdapter(prisma),
-	secret: process.env.AUTH_SECRET || "secret",
+
 	session: { strategy: "jwt", maxAge: 30 * 24 * 60 * 60, updateAge: 24 * 60 * 60 },
 
 	callbacks: {
 
 		async jwt({ token, user }) {
 
-			if (user?.id) {
-				token.id = user.id
-			}
 
-			return token
+			return { ...token, ...user }
 		},
-		async session({ session, token }) {
-			if (session?.user?.id) {
-				session.user.id = token.id as string
-			}
+		async session({ session, token, user }) {
+			session.user = token
+
 
 			return session
 		}
