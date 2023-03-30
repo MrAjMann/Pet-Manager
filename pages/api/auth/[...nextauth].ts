@@ -54,15 +54,15 @@ export const options: NextAuthOptions = {
 					console.log('user not found');
 					return null;
 				}
-				if (user) {
-					console.log(`${user.email} has been found`);
-					return user
-				}
+
+				return user
+
 
 
 			},
 		}),
 	],
+
 
 	pages: {
 		signIn: "/auth/login",
@@ -72,24 +72,27 @@ export const options: NextAuthOptions = {
 	session: { strategy: "jwt", maxAge: 30 * 24 * 60 * 60, updateAge: 24 * 60 * 60 },
 
 	callbacks: {
-		async session({ session, token }) {
-			session.user = token.user;
-			// console.log("session.user", session.user);
 
-			return session;
-		},
 		async jwt({ token, user }) {
-			if (user) {
-				token.user = user;
-				// console.log("token.user", token.user);
 
+			if (user?.id) {
+				token.id = user.id
 			}
-			return token;
+
+			return token
 		},
-	}
+		async session({ session, token }) {
+			if (session?.user?.id) {
+				session.user.id = token.id as string
+			}
+
+			return session
+		}
+	},
+}
 
 
-};
+
 
 
 

@@ -27,7 +27,7 @@ export default async function handle(
 // }
 
 
-async function handlePOST(res, req: NextApiRequest) {
+async function handlePOST(res: NextApiResponse, req: NextApiRequest) {
 
     const user = await prisma.user.findUnique({
         where: {
@@ -43,6 +43,6 @@ async function handlePOST(res, req: NextApiRequest) {
         return res.status(200).json(user)
     } else {
         res.status(401).json({ message: "Invalid credentials" })
-        
+
     }
 };

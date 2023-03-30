@@ -7,10 +7,14 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 
 export default async function createUser(req: NextApiRequest, res: NextApiResponse) {
-    const { email, password } = req.body as { email: string, password: string };
+    const { firstName, email, password } = req.body as {
+        firstName: string, email: string,
+        password: string
+    };
 
     const createdUserData = await prisma.user.create({
         data: {
+            firstName: firstName,
             email: email,
             password: password,
         }
