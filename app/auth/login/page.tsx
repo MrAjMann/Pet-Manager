@@ -11,6 +11,7 @@ import { useEffect, useRef } from "react";
 type Inputs = {
 	email: string;
 	password: string;
+	e: Event;
 };
 
 export default function LoginPage() {
@@ -25,6 +26,7 @@ export default function LoginPage() {
 	});
 
 	const onSubmit: SubmitHandler<Inputs> = (data) => {
+		data.e.preventDefault();
 		signIn("credentials", {
 			email: data.email,
 			password: data.password,

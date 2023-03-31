@@ -45,8 +45,9 @@ export default function Nav() {
 						>
 							<li>Pricing</li>
 						</Link>
+
 						<div className='flex justify-center mr-10 '>
-							{!session?.user && (
+							{session ? (
 								<div className=' flex items-center align-middle py-6'>
 									<Link
 										href='/auth/new-user'
@@ -54,13 +55,17 @@ export default function Nav() {
 									>
 										<li>Register</li>
 									</Link>
+								</div>
+							) : (
+								<div className=' flex items-center align-middle py-6'>
 									<div>
 										<SignInButton />
 									</div>
 								</div>
 							)}
+
 							<h1>{session?.user?.firstName}</h1>
-							{session && session?.user && <Logout />}
+							{session && <Logout />}
 						</div>
 					</ul>
 				</div>
@@ -76,10 +81,11 @@ export default function Nav() {
 				}
 			>
 				<div className='flex-col w-full h-full  items-center justify-between bg-black'>
-					<div className='flex flex-row-reverse justify-center '>
-						{!session?.user && <SignInButton />}
-						{session?.user && <Logout />}
-					</div>
+					{session && (
+						<div className='flex flex-row-reverse justify-center '>
+							{session.user ? <SignInButton /> : <Logout />}
+						</div>
+					)}
 					<div className='flex w-full items-center justify-between bg-black mt-4'>
 						<div className='sm:hidden cursor-pointer ml-[1rem] '>
 							<Link href={"/"}>
