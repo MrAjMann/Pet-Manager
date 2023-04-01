@@ -1,17 +1,18 @@
 export interface User {
-    firstName?: string | null | undefined;
-    lastName?: string | null | undefined;
-    role?: string;
-    email: string;
-    password: string;
-    id: string;
+    firstName?: String | null | undefined;
+    lastName?: String | null | undefined;
+    role?: String;
+    email: String;
+    password: String;
+    id: String;
 
 }
 
 declare module 'next-auth/jwt' {
     /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
     interface JWT {
-        role: string;
+        id: String
+        role: String;
 
     }
 }

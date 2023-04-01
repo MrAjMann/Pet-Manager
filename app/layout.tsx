@@ -29,10 +29,7 @@ export default function RootLayout({
 					(roboto.variable, sourceSansPro.variable)
 				} bg-[#070707] text-white`}
 			>
-				<Providers>
-					<Nav />
-					{children}
-				</Providers>
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	);

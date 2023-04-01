@@ -1,7 +1,9 @@
 "use client";
 import Link from "next/link";
 import SignInButton from "../../components/authComponent/buttons";
+// import { getServerSession } from "next-auth/next";
 
+// import { options } from "../../pages/api/auth/[...nextauth]";
 import Logout from "./logout/page";
 import { useSession } from "next-auth/react";
 
@@ -10,7 +12,6 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { useState } from "react";
 
 export default function Nav() {
-	// const session = await getServerSession(authOptions);
 	const { data: session } = useSession();
 
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -46,8 +47,8 @@ export default function Nav() {
 							<li>Pricing</li>
 						</Link>
 
-						<div className='flex justify-center mr-10 '>
-							{session ? (
+						{!session ? (
+							<div className='flex justify-center mr-10 '>
 								<div className=' flex items-center align-middle py-6'>
 									<Link
 										href='/auth/new-user'
@@ -56,17 +57,21 @@ export default function Nav() {
 										<li>Register</li>
 									</Link>
 								</div>
-							) : (
+
 								<div className=' flex items-center align-middle py-6'>
 									<div>
 										<SignInButton />
 									</div>
 								</div>
-							)}
-
-							<h1>{session?.user?.firstName}</h1>
-							{session && <Logout />}
-						</div>
+							</div>
+						) : (
+							<div className='flex justify-center mr-10 '>
+								<div className=' flex items-center align-middle py-6'>
+									<h1>{session?.user?.firstName}</h1>
+									{session && <Logout />}
+								</div>
+							</div>
+						)}
 					</ul>
 				</div>
 				<div onClick={handleNav} className='sm:hidden cursor-pointer '>
