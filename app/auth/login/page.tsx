@@ -1,12 +1,8 @@
 "use client";
-import {
-	useForm,
-	SubmitHandler,
-	useFieldArray,
-	Controller,
-} from "react-hook-form";
+
 import { signIn } from "next-auth/react";
 import { useEffect, useRef } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
 	email: string;

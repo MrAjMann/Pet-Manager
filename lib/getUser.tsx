@@ -1,7 +1,14 @@
-export default async function getUser(userId: String) {
-	const res = await fetch(`http://localhost:3000/api/user/${userId}`);
+import { log } from "console";
+import { prisma } from "../prisma/client";
 
-	if (!res.ok) throw new Error("failed to fetch user");
+export async function getUser(email: string) {
+	const user = await prisma?.user.findUnique({
+		where: {
+			email: email,
+		},
+	});
 
-	return res.json();
+	// if (!user) throw new Error("failed to fetch user");
+	console.log(user);
+	return user;
 }
