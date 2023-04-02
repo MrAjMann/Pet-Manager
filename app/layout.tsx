@@ -1,8 +1,8 @@
 import "./globals.css";
-import Nav from "./auth/Nav";
+
 import { Roboto, Source_Sans_Pro } from "@next/font/google";
 import Providers from "./providers";
-
+import { getUser } from "@/lib/getUser";
 // Rename this file to layout.jsx to use it as typescript is not currently recognizing server components in the layout file
 
 // Add required fonts here using this pattern
@@ -29,7 +29,10 @@ export default function RootLayout({
 					(roboto.variable, sourceSansPro.variable)
 				} bg-[#070707] text-white`}
 			>
-				<Providers>{children}</Providers>
+				<Providers >
+
+					{children}
+					</Providers>
 			</body>
 		</html>
 	);

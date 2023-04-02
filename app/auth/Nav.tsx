@@ -10,11 +10,12 @@ import { useSession } from "next-auth/react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 import { useState } from "react";
+import { log } from "console";
+import Email from "next-auth/providers/email";
 
-export default function Nav() {
-	const { data: session } = useSession();
-
+export default function Nav({ ...user }) {
 	const [menuOpen, setMenuOpen] = useState(false);
+	const userInfo = user.user;
 
 	const handleNav = () => {
 		setMenuOpen(!menuOpen);
@@ -47,7 +48,7 @@ export default function Nav() {
 							<li>Pricing</li>
 						</Link>
 
-						{!session ? (
+						{userInfo === undefined ? (
 							<div className='flex justify-center mr-10 '>
 								<div className=' flex items-center align-middle py-6'>
 									<Link
@@ -67,8 +68,8 @@ export default function Nav() {
 						) : (
 							<div className='flex justify-center mr-10 '>
 								<div className=' flex items-center align-middle py-6'>
-									<h1>{session?.user?.firstName}</h1>
-									{session && <Logout />}
+									<h1>{userInfo?.firstName}</h1>
+									{userInfo && <Logout />}
 								</div>
 							</div>
 						)}
@@ -86,9 +87,9 @@ export default function Nav() {
 				}
 			>
 				<div className='flex-col w-full h-full  items-center justify-between bg-black'>
-					{session && (
+					{userInfo && (
 						<div className='flex flex-row-reverse justify-center '>
-							{session.user ? <SignInButton /> : <Logout />}
+							{userInfo ? <SignInButton /> : <Logout />}
 						</div>
 					)}
 					<div className='flex w-full items-center justify-between bg-black mt-4'>

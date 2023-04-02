@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import Profile from "./components/Profile";
+import Dashboard from "./components/Dashboard";
 export default function CompanyDashboard() {
 	// const { data: session, status } = useSession();
 	// if (status === "loading") {
@@ -42,9 +42,9 @@ export default function CompanyDashboard() {
 	// }
 
 	return (
-		<div className='flex flex-col items-center justify-center h-screen'>
-			<div className='flex flex-col items-center justify-center w-1/2  rounded-lg gap-4'>
-				<Profile />
+		<div className='flex items-start  justify-left my-36 h-screen'>
+			<div className='flex flex-col  rounded-lg gap-4'>
+				<Dashboard />
 			</div>
 		</div>
 	);

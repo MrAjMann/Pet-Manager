@@ -6,7 +6,7 @@ export default function DashboardLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<section className='w-full'>
+		<section className='flex w-full overflow-hidden h-screen'>
 			{/* Include shared UI here e.g. a header or sidebar */}
 			<Sidebar />
 
