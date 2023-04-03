@@ -1,6 +1,7 @@
 import { getUser } from "@/lib/getUser";
 import { CldImage } from "next-cloudinary";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import Nav from "./auth/Nav";
 import Register from "./auth/Register";
 import LandingPage from "./Components/LandingPage";
@@ -16,6 +17,7 @@ export default async function Home() {
 	return (
 		<main>
 			<Nav user={user} />
+			if (user) {redirect("/dashboard")}
 			<LandingPage />
 		</main>
 	);

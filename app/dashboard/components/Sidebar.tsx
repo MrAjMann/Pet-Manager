@@ -1,6 +1,10 @@
+"use client";
+import Logout from "@/app/auth/logout/page";
+import { signOut } from "next-auth/react";
+
 export default function Sidebar() {
 	return (
-		<nav className='z-40 w-80 fixed top-0 left-0 '>
+		<nav className='z-40 w-64 fixed top-0 left-0 '>
 			<aside
 				id='logo-sidebar'
 				className='  h-screen transition-transform -translate-x-full sm:translate-x-0'
@@ -52,6 +56,14 @@ export default function Sidebar() {
 									Settings
 								</span>
 							</a>
+						</li>
+						<li>
+							<button
+								onClick={() => signOut()}
+								className='w-full flex  p-3  text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ring-1 ring-gray-400 active:ring-blue-500 '
+							>
+								<span className=' ml-4 whitespace-nowrap text-xl '>Logout</span>
+							</button>
 						</li>
 					</ul>
 				</div>

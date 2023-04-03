@@ -11,14 +11,22 @@ datasource db {
   relationMode = "prisma"
 }
 
-model Post {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String
-  published Boolean  @default(false)
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+model Pets {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  type        String
+  breed       String?
+  gender      String?
+  age         String?
+  weight      String?
+  desexed     Boolean  @default(false)
+  vaccinated  Boolean  @default(false)
+  temperament String?
+  image       String?
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
@@ -71,7 +79,7 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   role          String    @default("CLIENT")
-  posts         Post[]
+  pets          Pets[]
   accounts      Account[]
   sessions      Session[]
 
