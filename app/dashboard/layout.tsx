@@ -6,11 +6,13 @@ export default function DashboardLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<section className='flex w-full overflow-hidden h-screen'>
+		<section className='flex w-full relative '>
 			{/* Include shared UI here e.g. a header or sidebar */}
 			<Sidebar />
-
-			{children}
+			{/* Dashboard container */}
+			<div className='fixed top-0 left-80 w-full '>
+				<div className='flex justify-start ml-64'>{children}</div>
+			</div>
 		</section>
 	);
 }
