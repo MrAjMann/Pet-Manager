@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { TiTick, TiTrash, TiEdit } from "react-icons/ti";
 
-export default function CheckInModule({ pets, user }) {
+export default function CheckOutModule({ pets, user }) {
 	const handleArrived = () => {};
 	const handleEdit = () => {};
 	const handleDelete = () => {};
@@ -12,7 +12,7 @@ export default function CheckInModule({ pets, user }) {
 	return (
 		<div className='my-12 w-96 flex flex-col h-auto rounded-md ring-1 ring-gray-400 shadow-lg shadow-gray-400'>
 			<div className='flex items-center justify-center my-8'>
-				<h1 className='font-bold text-xl text-black'>Checking In</h1>
+				<h1 className='font-bold text-xl text-black'>Checking Out</h1>
 			</div>
 			{/* Pets being checked in for that day  will go here*/}
 			<div className='flex flex-col  items-center w-full gap-1 mb-12'>

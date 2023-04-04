@@ -24,6 +24,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/layout.tsx", "app/auth/Nav.tsx", "app/providers.js", "app/dashboard/page.js", "app/dashboard/components/Dashboard.js", "lib/getServerSession.js", "lib/getUser.js", "app/api/user/route.js", "app/dashboard/components/DashboardComponents/CheckInModule.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/layout.tsx", "app/auth/Nav.tsx", "app/providers.js", "app/dashboard/page.js", "app/dashboard/components/Dashboard.js", "lib/getServerSession.js", "lib/getUser.js", "app/api/user/route.js", "app/dashboard/components/DashboardComponents/CheckInModule.js", "app/dashboard/components/DashboardComponents/CheckOutModule.js"],
   "exclude": ["node_modules"]
 }

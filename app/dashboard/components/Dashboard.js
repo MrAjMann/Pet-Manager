@@ -32,7 +32,7 @@ export default async function Dashboard() {
 				<div className='flex  w-full flex-col '>
 					<div className='flex flex-col sm:flex-row gap-12 '>
 						<CheckInModule pets={petData} user={user} />
-						<CheckOutModule />
+						<CheckOutModule pets={petData} user={user} />
 					</div>
 				</div>
 			</div>
