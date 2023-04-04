@@ -22,15 +22,16 @@ export default async function Dashboard() {
 	const petData = await fetchPets();
 
 	const todaysDate = new Date().toLocaleDateString();
+
 	return (
 		<section className='flex justify-center items-center '>
 			<div className='flex flex-col  '>
-				<p className=' text-md p-2 text-white/60 '>{todaysDate}</p>
-				<h1 className='text-5xl p-2 text-white/90'>Dashboard</h1>
-				<p className=' text-lg p-2 text-white'>Hi, {user?.firstName}.</p>
+				<p className=' text-md p-2 text-black/60 '>{todaysDate}</p>
+				<h1 className='text-5xl p-2 text-black/90'>Dashboard</h1>
+				<p className=' text-lg p-2 text-black'>Hi, {user?.firstName}.</p>
 				<div className='flex  w-full flex-col '>
 					<div className='flex flex-col sm:flex-row gap-12 '>
-						<CheckInModule pets={petData} />
+						<CheckInModule pets={petData} user={user} />
 						<CheckOutModule />
 					</div>
 				</div>

@@ -42,7 +42,7 @@ export default function CompanyDashboard() {
 	// }
 
 	return (
-		<div className='flex items-start justify-left my-28 h-screen'>
+		<div className='flex items-start justify-left my-28 h-screen '>
 			<div className='flex flex-col rounded-lg gap-2'>
 				<Dashboard />
 			</div>

@@ -10,8 +10,8 @@ export default function DashboardLayout({
 			{/* Include shared UI here e.g. a header or sidebar */}
 			<Sidebar />
 			{/* Dashboard container */}
-			<div className='fixed top-0 left-80 mx-36 '>
-				<div className='flex justify-start '>{children}</div>
+			<div className='fixed top-0 left-60  w-full !bg-white '>
+				<div className='flex justify-start mx-36'>{children}</div>
 			</div>
 		</section>
 	);
