@@ -14,6 +14,9 @@ module.exports = {
 			fontFamily: {
 				"source-sans-pro": ["Source Sans Pro", ...fontFamily.sans],
 			},
+			width: {
+				"dashboard-width": "calc(100vw - 300px)",
+			},
 		},
 	},
 	plugins: [],

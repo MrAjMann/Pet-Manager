@@ -42,8 +42,10 @@ export default function CompanyDashboard() {
 	// }
 
 	return (
-		<div className='flex items-start justify-left my-28 h-screen '>
-			<div className='flex flex-col rounded-lg gap-2'>
+		<div
+			className={` relative flex items-start justify-center  h-screen w-[calc(100%_-_10rem)] mr-36 `}
+		>
+			<div className='flex flex-col rounded-lg gap-2 w-full h-full '>
 				<Dashboard />
 			</div>
 		</div>
