@@ -1,8 +1,9 @@
 "use client";
 
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
+
 import { useRouter } from "next/navigation";
-import { use, useEffect, useState } from "react";
+import { useState } from "react";
 
 const now = new Date();
 const yesterdayBegin = new Date(
@@ -17,33 +18,52 @@ export default function Calender({ pets, user }) {
 	const petData = pets;
 
 	const [bookingDate, setBookingDate] = useState([yesterdayBegin, todayEnd]);
-
+	const [selectedItemId, setSelectedItemId] = useState(null);
 	const [checkedState, setCheckedState] = useState(
 		new Array(petData.length).fill("")
 	);
-	const selectedPets = new Array(petData.length).fill("");
 
-	const handleOnChange = (position) => {
-		const updatedCheckedState = checkedState.map((item, index) =>
-			index === position ? !item : item
+	const selectedItems = [];
+
+	function removeItemFromSelection(item) {
+		const index = selectedItems.findIndex(
+			(selectedItem) => selectedItem.id === item.id
 		);
-		setCheckedState(updatedCheckedState);
-		// console.log("updatedCheckedState", updatedCheckedState);
-		if (updatedCheckedState[position] === true) {
-			selectedPets.unshift(petData.name);
-			console.log("selectedPets", selectedPets);
-			return selectedPets;
-			// console.log("petData[position]", petData[position].name);
+		if (index !== -1) {
+			selectedItems.splice(index, 1);
 		}
+	}
+
+	function addItemToSelection(item) {
+		selectedItems.push(item);
+	}
+	const handleCheckboxClick = (selectedItemId) => {
+		setSelectedItemId(selectedItemId);
 	};
-	// Get the user id from the session
 
-	// console.log("userData", userData);
-	// console.log("petData", petData);
+	const handleOnChange = () => {
+		const updatedCheckedState = checkedState.map((item) => {
+			if (item.id === selectedItemId) {
+				if (item.checked) {
+					// Checkbox is being unchecked, remove the item from the selection
+					removeItemFromSelection(item);
+					return { ...item, checked: false };
+				} else {
+					// Checkbox is being checked, add the item to the selection
+					addItemToSelection(item);
+					console.log("item", item);
+					return { ...item, checked: true };
+				}
+			} else {
+				return item;
+			}
+		});
+
+		setCheckedState(updatedCheckedState);
+	};
+	console.log("setCheckedState", checkedState);
+
 	const router = useRouter();
-	// Get the pets from the user id
-
-	// Get the date range from the calender and send it to the server
 
 	const handleBooking = async () => {
 		try {
@@ -56,7 +76,7 @@ export default function Calender({ pets, user }) {
 					},
 					body: JSON.stringify({
 						userId: userData.id,
-						petId: selectedPets.id,
+						petId: updatedCheckedState.posision.id,
 						startDate: bookingDate[0].toLocaleDateString(),
 						endDate: bookingDate[1].toLocaleDateString(),
 						// callbackURL: router.push("/auth/login"),
@@ -91,23 +111,24 @@ export default function Calender({ pets, user }) {
 				<div className='flex flex-col items-center justify-center gap-12'>
 					{/* select a pet */}
 					<div className='w-full my-12'>
-						<label className='block mb-2 text-lg font-medium text-black'>
+						<h4 className='block mb-2 text-lg font-medium text-black'>
 							Select a pet
-						</label>
+						</h4>
 						<div className=' block w-full p-2.5  '>
 							{petData.map((pet, index) => (
-								<div className='flex items-center'>
+								<div className='flex items-center' key={pet.id}>
 									<input
 										id={`${pet.name}_checkbox`}
 										type='checkbox'
 										key={pet.id}
 										value={pet.name}
-										checked={checkedState[index]}
+										checked={pet.checked}
 										onChange={() => handleOnChange(index)}
+										onClick={() => handleCheckboxClick(pet.id)}
 										className='w-12 h-12 mr-4 border-gray-300 rounded'
 									/>
 									<label
-										for={`${pet.name}_checkbox`}
+										htmlFor={`${pet.name}_checkbox`}
 										className='flex items-center w-full
 										text-black text-lg font-medium'
 									>
