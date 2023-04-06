@@ -35,11 +35,11 @@ export default function NewUserPage() {
 					// callbackURL: router.push("/auth/login"),
 				}),
 			});
-			// return createdUser;
-			console.log(createdUser);
+			return createdUser;
+			// console.log(createdUser);
 		} catch (error) {
 			router.push("/");
-			console.log(error);
+			// console.log(error);
 		}
 	};
 

@@ -11,22 +11,46 @@ datasource db {
   relationMode = "prisma"
 }
 
+enum status {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Booking {
+  id               String   @id @default(cuid())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  bookingStartDate String
+  bookingEndDate   String
+
+  status String @default("PENDING")
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  petId  String
+  pet    Pets   @relation(fields: [petId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([petId])
+}
+
 model Pets {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   name        String
   type        String
   breed       String?
   gender      String?
   age         String?
   weight      String?
-  desexed     Boolean  @default(false)
-  vaccinated  Boolean  @default(false)
+  desexed     Boolean   @default(false)
+  vaccinated  Boolean   @default(false)
   temperament String?
   image       String?
   userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookings    Booking[]
 
   @@index([userId])
 }
@@ -80,6 +104,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   role          String    @default("CLIENT")
   pets          Pets[]
+  bookings      Booking[]
   accounts      Account[]
   sessions      Session[]
 

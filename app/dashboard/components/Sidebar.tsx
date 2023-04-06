@@ -39,7 +39,7 @@ export default function Sidebar() {
 						</li>
 						<li>
 							<a
-								href='#'
+								href='/dashboard/bookings'
 								className='flex items-center p-3 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ring-1 ring-gray-400 active:ring-blue-500'
 							>
 								<span className='flex-1 ml-4 whitespace-nowrap text-xl '>
